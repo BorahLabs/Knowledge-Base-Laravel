@@ -13,7 +13,7 @@ use function Illuminate\Events\queueable;
 
 trait BelongsToKnowledgeBase
 {
-    protected string $knowledgeBaseKeyAttribute = null; 
+    protected string $knowledgeBaseKeyAttribute = ''; 
 
     public static function bootBelongsToKnowledgeBase()
     {
