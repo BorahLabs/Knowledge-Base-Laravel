@@ -58,17 +58,19 @@ class KnowledgeBaseClient
      * @param  array<string>  $entities The entities to search for.
      * @param  array<string:string>  $where The entities to search for.
      */
-    public function query(string $text, int $k = 10, ?array $entities = null, ?array $where = null): KnowledgeBaseQueryResponse
+    public function query(string $text, int $k = 10, ?array $entities = null, ?array $where = null, float $minScore = 0.05): KnowledgeBaseQueryResponse
     {
         logger()->debug('[KnowledgeBaseClient] Querying knowledge base', [
             'text' => $text,
             'k' => $k,
             'entities' => $entities,
             'where' => $where,
+            'minScore' => $minScore,
         ]);
         $params = [
             'query' => $text,
             'k' => $k,
+            'min_score' => $minScore,
         ];
 
         if ($entities) {

@@ -38,7 +38,7 @@ trait BelongsToKnowledgeBase
         return [];
     }
 
-    public function knowledgeBaseKeyAttribute(): ?string 
+    public function knowledgeBaseKeyAttribute(): ?string
     {
         return null;
     }
@@ -66,7 +66,7 @@ trait BelongsToKnowledgeBase
             }
 
             $key = $this->knowledgeBaseKeyAttribute() ? $this->{$this->knowledgeBaseKeyAttribute()} : $this->getKey();
-            
+
             $items[] = new KnowledgeInsertItem(
                 id: $chunk->id,
                 entity: $text->entity,
@@ -91,8 +91,8 @@ trait BelongsToKnowledgeBase
         return $items;
     }
 
-    public static function searchInKnowledgeBase(string $query, int $k = 10, ?array $where = null): KnowledgeBaseQueryResponse
+    public static function searchInKnowledgeBase(string $query, int $k = 10, ?array $where = null, float $minScore = 0.05): KnowledgeBaseQueryResponse
     {
-        return KnowledgeBase::query($query, $k, [class_basename(static::class)], $where);
+        return KnowledgeBase::query($query, $k, [class_basename(static::class)], $where, $minScore);
     }
 }
