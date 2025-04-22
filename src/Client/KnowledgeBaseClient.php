@@ -78,10 +78,10 @@ class KnowledgeBaseClient
         }
 
         if ($where) {
-            $params['where'] = json_encode($where);
+            $params['where'] = $where;
         }
 
-        $response = $this->client->get('/query', $params)
+        $response = $this->client->post('/query', $params)
             ->throw()
             ->json();
 
