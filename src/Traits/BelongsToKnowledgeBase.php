@@ -91,8 +91,8 @@ trait BelongsToKnowledgeBase
         return $items;
     }
 
-    public static function searchInKnowledgeBase(string $query, int $k = 10, ?array $where = null, float $minScore = 0.05): KnowledgeBaseQueryResponse
+    public static function searchInKnowledgeBase(string $query, int $k = 10, ?array $where = null, float $minScore = 0.05, bool $useReranker = false): KnowledgeBaseQueryResponse
     {
-        return KnowledgeBase::query($query, $k, [class_basename(static::class)], $where, $minScore);
+        return KnowledgeBase::query($query, $k, [class_basename(static::class)], $where, $minScore, $useReranker);
     }
 }

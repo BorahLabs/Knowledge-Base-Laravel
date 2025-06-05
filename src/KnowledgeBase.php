@@ -39,11 +39,18 @@ class KnowledgeBase
         return true;
     }
 
-    public function query(string $text, int $k = 10, ?array $entities = null, ?array $where = null, float $minScore = 0.05): KnowledgeBaseQueryResponse
+    public function query(
+        string $text,
+        int $k = 10,
+        ?array $entities = null,
+        ?array $where = null,
+        float $minScore = 0.05,
+        bool $useReranker = false,
+    ): KnowledgeBaseQueryResponse
     {
         $client = new KnowledgeBaseClient();
 
-        return $client->query($text, $k, $entities, $where, $minScore);
+        return $client->query($text, $k, $entities, $where, $minScore, $useReranker);
     }
 
     /**
